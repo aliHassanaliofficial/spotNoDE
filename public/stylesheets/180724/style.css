@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Cairo", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+}
+
+:root {
+    --main-color: #02093e;
+    --default-transition: .3s all;
+}
+
+::-webkit-scrollbar {
+    width: 0em;
+    border-radius: 30px;
+    transition: var(--transition);
+}
+
+::-webkit-scrollbar:hover {
+    width: 0em;
+    transition: var(--transition);
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    transition: var(--transition);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    transition: var(--transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(94, 94, 94);
+    transition: var(--transition);
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(172, 172, 172);
+    opacity: 1;
+    font-family: "Cairo", sans-serif;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgb(172, 172, 172);
+    font-family: "Cairo", sans-serif;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgb(172, 172, 172);
+    font-family: "Cairo", sans-serif;
+}
+
+#cdnError {
+    display: none;
+}
+
+.data {
+    display: none;
+}
+
+.loading {
+    background: #02093e;
+}
+
+.logo {
+    width: 30%;
+}
+
+/*end of main rules*/
+/* introSection*/
+.logo {
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: myfirst;
+    animation-delay: 1s;
+    animation-duration: .5s;
+    animation-direction: reverse;
+    animation-fill-mode: forwards;
+    text-align: center;
+}
+
+img.static-logo {
+    left: 50% !important;
+    top: 10% !important;
+}
+
+.intro-section h6 {
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -60%);
+    animation-name: myfirst;
+    animation-delay: 1s;
+    animation-duration: .5s;
+    animation-direction: reverse;
+    animation-fill-mode: forwards;
+    text-align: center;
+    color: white;
+}
+
+@keyframes myfirst {
+    0% {
+        left: 50%;
+        top: 10%;
+    }
+}
