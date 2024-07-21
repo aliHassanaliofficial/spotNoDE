@@ -1,5 +1,5 @@
 const awsServerlessExpress = require('aws-serverless-express');
-const app = require('../app'); // Import the app from server.js
+const app = require('./app'); // Import the app from server.js
 const server = awsServerlessExpress.createServer(app);
 
 exports.handler = (event, context) => {
