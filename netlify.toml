@@ -3,6 +3,7 @@
   publish = "public"
   command = "npm run build netlify"
 
+
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/server"
