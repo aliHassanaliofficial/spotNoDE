@@ -4,6 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "copy-pdfs": "cpx 'public/*.pdf' dist/",
     "build": ""
   },
   "author": "",
@@ -25,6 +26,7 @@
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
+    "cpx": "^1.5.0",
     "netlify-lambda": "^2.0.16",
     "nodemon": "^3.1.4"
   },

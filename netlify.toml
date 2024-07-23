@@ -3,10 +3,6 @@
   publish = "public"
   command = "npm run build netlify"
 
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-
-
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/server"
