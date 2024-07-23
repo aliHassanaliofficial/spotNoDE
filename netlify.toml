@@ -1,7 +1,10 @@
 [build]
   functions = "functions"
-  publish = "public"
+  publish = "dist"
   command = "npm run build netlify"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
 
 
 [[redirects]]
