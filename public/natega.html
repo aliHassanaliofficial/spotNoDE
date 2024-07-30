@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanawia SPOT</title>
+    <link rel="stylesheet" href="stylesheets/180724/loader.css">
+    <link rel="stylesheet" href="stylesheets/180724/style.css">
+    <!-- <link rel="stylesheet" href="stylesheets/230724_form/mediaquery.css">
+    <link rel="stylesheet" href="stylesheets/230724_form/style.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    :root {
+        --transition: .3s all;
+    }
+
+    .header {
+        width: 100%;
+        background-color: #ffffff78 !important;
+        -webkit-backdrop-filter: saturate(180%) blur(11px);
+        -moz-backdrop-filter: saturate(180%) blur(11px);
+        backdrop-filter: saturate(180%) blur(14px);
+        z-index: 10000;
+        padding: 13px;
+        transition: var(--transition);
+        box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        width: 26%;
+    }
+
+    @media (min-width: 1200px) {
+        .logo {
+            width: 10%;
+        }
+    }
+
+    #loading {
+        display: none;
+        font-size: 1.5em;
+        color: #333;
+    }
+
+    .form-area,
+    #result {
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .input-field {
+        width: 40%;
+        padding: 10px 15px;
+        border: 1px solid lightgray;
+        border-radius: 7px;
+        margin: 10px 5px;
+        margin: 15px;
+        font-size: 15px;
+        font-family: 'Readex Pro', sans-serif;
+        border-radius: 10px;
+        border: 0px;
+        background-color: #f1f1f1;
+        color: var(--main-color);
+        transition: var(--transition);
+        z-index: 9999;
+    }
+
+    input.readonly {
+        background-color: white;
+        color: rgb(0 0 0) !important;
+        font-weight: bold;
+    }
+
+    input[type="text"][disabled] {
+        color: red;
+    }
+
+    .get-buttons {
+        margin: 15px;
+        padding: 9px;
+        font-size: 16px;
+        font-family: 'Readex Pro', sans-serif;
+        border-radius: 100px;
+        border: 0px;
+        background-color: #f1f1f1;
+        color: var(--main-color);
+        width: 8%;
+        transition: var(--transition);
+        z-index: 9999;
+    }
+
+    button#retryNatega {
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%, -90%);
+    }
+
+    input:focus {
+        border: 1px var(--main-color) solid;
+        outline: 0.1px var(--main-color);
+        box-shadow: 0.6em 0.6em 1.2em #d2dce9, -0.5em -0.5em 1em #fff;
+        transition: var(--transition);
+    }
+
+    .get-buttons:hover {
+        background-color: var(--main-color);
+        color: white;
+        transition: var(--transition);
+    }
+
+    div.nategaTable {
+        font-family: Arial, Helvetica, sans-serif;
+        width: 80%;
+        text-align: center;
+        border-collapse: collapse;
+        border-radius: 100px;
+    }
+
+    .divTable.nategaTable .divTableCell,
+    .divTable.nategaTable .divTableHead {
+        border: 1px solid #AAAAAA;
+        padding: 7px 7px;
+    }
+
+    .divTable.nategaTable .divTableBody .divTableCell {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .divTable.nategaTable .divTableRow:nth-child(even) {
+        background: #D0E4F5;
+    }
+
+    .divTable.nategaTable .divTableHeading {
+        background: #02093E;
+        border-bottom: 10px solid #FFFFFF;
+    }
+
+    .divTable.nategaTable .divTableHeading .divTableHead {
+        font-size: 15px;
+        font-weight: bold;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .nategaTable .tableFootStyle {
+        font-size: 14px;
+    }
+
+    /* DivTable.com */
+    .divTable {
+        display: table;
+    }
+
+    .divTableRow {
+        display: table-row;
+    }
+
+    .divTableHeading {
+        display: table-header-group;
+    }
+
+    .divTableCell,
+    .divTableHead {
+        display: table-cell;
+    }
+
+    .divTableHeading {
+        display: table-header-group;
+    }
+
+    .divTableFoot {
+        display: table-footer-group;
+    }
+
+    .divTableBody {
+        display: table-row-group;
+    }
+
+    .processing {
+        position: absolute;
+        top: 90%;
+        transform: translate(0%, 480%);
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .spinner-colored {
+        border-bottom-color: 5px solid var(--main-color) !important;
+    }
+</style>
+
+<body>
+    <div class="loader">
+        <div class="pending">
+            <div class="loading"> <img src="assets/180724/logo.png" alt="" />
+                <div id="loaderLine" class="loader-line"></div>
+                <h3
+                    style="margin: 2px 0px; color: white; position: absolute; top: 98%; transform: translate(0%, -98%); font-size: medium;">
+                    Powered By: <strong style="font-size: large; color: white;">ERA Engines &copy; 2024</strong></h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="data">
+        <div class="header">
+            <div class="container">
+                <img src="assets/180724/bluedLogo.png" alt="" class="logo" id="spotLogo">
+            </div>
+        </div>
+
+        <form class="form-area" id="searchForm">
+            <input type="text" placeholder="Enter Seat Number" id="getSeatNo" name="number" class="input-field">
+            <input type="submit" value="search" id="submitButton" class="get-buttons">
+            <div class="processing">
+                <div id="loading" class="loader-line spinner-colored"></div>
+            </div>
+            <div id="result"> </div>
+        </form>
+        <button id="retryNatega" onclick="retryNatega()" class="get-buttons" style="display: none;">نتيجة أخرى</button>
+    </div>
+
+    <script>
+        function retryNatega() {
+            location.href = 'https://thanawiaspot.netlify.app/natega';
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#searchForm').on('submit', function (event) {
+                event.preventDefault();
+
+                const numberToSearch = $('#getSeatNo').val();
+                $('#loading').show(); // Show the loading spinner
+                $('#result').hide(); // Hide the result div
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/submit',
+                    data: { number: numberToSearch },
+                    success: function (response) {
+                        $('#loading').hide(); // Hide the loading spinner
+                        if (response.message) {
+                            $('#getSeatNo').hide();
+                            $('#submitButton').hide();
+                            $('#result').text('رقم الجلوس الـ أنت دخلته غير صحيح من فضلك اتأكد من رقم الجلوس و جرب تاني').show();
+                            $('#retryNatega').show();
+                        } else {
+                            $('#getSeatNo').hide();
+                            $('#submitButton').hide();
+                            $('#result').html(
+                                `
+                                <div class="divTable nategaTable">
+                                    <div class="divTableHeading">
+                                        <div class="divTableRow">
+                                            <div class="divTableHead">اسم الطالب</div>
+                                            <div class="divTableHead">المجموع النهائي</div>
+                                            <div class="divTableHead">حالة الطالب</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">${response[0].arabic_name}</div>
+                                            <div class="divTableCell">${response[0].total_degree}</div>
+                                            <div class="divTableCell">${response[0].student_case_desc}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                `
+                            ).show();
+                            $('#retryNatega').show();
+                        }
+                    },
+                    error: function (error) {
+                        $('#loading').hide(); // Hide the loading spinner
+                        console.error('Error:', error);
+                        $('#result').text('An error occurred while processing your request.').show();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(window).on('load', function () {
+            $(".loader").fadeOut(1000);
+            $(".data").fadeIn(1000);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

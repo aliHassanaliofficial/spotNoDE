@@ -1,0 +1,48 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff78 !important;
+    -webkit-backdrop-filter: saturate(180%) blur(11px);
+    -moz-backdrop-filter: saturate(180%) blur(11px);
+    backdrop-filter: saturate(180%) blur(14px);
+    z-index: 10000;
+    padding: 13px;
+    transition: var(--transition);
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+}
+
+.header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-section {
+    width: fit-content;
+    text-align: center;
+}
+
+.logo {
+    width: 40%;
+}
+
+.form-area {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -20%);
+}
+
+.dataInput {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+    margin: 10px 5px;
+}
+
+.data-label {
+    margin-left: 10px;
+}

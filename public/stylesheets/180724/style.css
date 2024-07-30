@@ -81,7 +81,7 @@ body {
 
 /*end of main rules*/
 /* introSection*/
-.logo {
+/* .logo {
     position: fixed;
     z-index: 100;
     left: 50%;
@@ -93,7 +93,7 @@ body {
     animation-direction: reverse;
     animation-fill-mode: forwards;
     text-align: center;
-}
+} */
 
 img.static-logo {
     left: 50% !important;
