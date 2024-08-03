@@ -23,7 +23,7 @@ app.get('/natega', (req, res) => {
 // Handle form submission
 app.post('/submit', async (req, res) => {
     const numberToSearch = req.body.number;
-    const csvFile = path.join(__dirname, 'private', 'natega.csv');
+    const csvFile = path.join(__dirname, 'public', 'natega.csv');
 
     try {
         const results = await searchCSV(numberToSearch, csvFile);
@@ -50,7 +50,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port: http://localhost:${port}`);
 });
 
 module.exports = app;

@@ -7,13 +7,25 @@
     <title>Thanawia SPOT</title>
     <link rel="stylesheet" href="stylesheets/180724/loader.css">
     <link rel="stylesheet" href="stylesheets/180724/style.css">
+    <link rel="icon" href="assets/180724/framedLogo.png">
+    <meta name="description" content="Thanawia Spot is a part of SPOT Organization based in Alexadnria Egypt To help Thanawia students to access all learning materials and instructors">
     <!-- <link rel="stylesheet" href="stylesheets/230724_form/mediaquery.css">
     <link rel="stylesheet" href="stylesheets/230724_form/style.css"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="keywords" content="thanawiaspot, thanawia2024, نتيجة الثانوية العامة 2024, نتيجة ثانوية عامة, edu">
 </head>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+    body {
+        font-family: "Cairo", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "slnt" 0;
+    }
+
     :root {
         --transition: .3s all;
     }
@@ -41,12 +53,6 @@
         width: 26%;
     }
 
-    @media (min-width: 1200px) {
-        .logo {
-            width: 10%;
-        }
-    }
-
     #loading {
         display: none;
         font-size: 1.5em;
@@ -65,17 +71,20 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        color: var(--main-color);
     }
 
     .input-field {
-        width: 40%;
-        padding: 10px 15px;
+        width: 100%;
+        padding: 15px 15px;
         border: 1px solid lightgray;
         border-radius: 7px;
         margin: 10px 5px;
         margin: 15px;
-        font-size: 15px;
-        font-family: 'Readex Pro', sans-serif;
+        font-size: 20px;
         border-radius: 10px;
         border: 0px;
         background-color: #f1f1f1;
@@ -96,14 +105,13 @@
 
     .get-buttons {
         margin: 15px;
-        padding: 9px;
-        font-size: 16px;
-        font-family: 'Readex Pro', sans-serif;
+        padding: 12px;
+        font-size: 18px;
         border-radius: 100px;
         border: 0px;
         background-color: #f1f1f1;
         color: var(--main-color);
-        width: 8%;
+        width: 55%;
         transition: var(--transition);
         z-index: 9999;
     }
@@ -112,7 +120,7 @@
         position: absolute;
         top: 90%;
         left: 50%;
-        transform: translate(-50%, -90%);
+        transform: translate(-57%, -90%);
     }
 
     input:focus {
@@ -129,8 +137,8 @@
     }
 
     div.nategaTable {
-        font-family: Arial, Helvetica, sans-serif;
-        width: 80%;
+        direction: rtl;
+        width: 120%;
         text-align: center;
         border-collapse: collapse;
         border-radius: 100px;
@@ -143,7 +151,7 @@
     }
 
     .divTable.nategaTable .divTableBody .divTableCell {
-        font-size: 13px;
+        font-size: 17px;
         font-weight: bold;
     }
 
@@ -210,6 +218,53 @@
     .spinner-colored {
         border-bottom-color: 5px solid var(--main-color) !important;
     }
+
+    [type=submit]:not(:disabled),
+    button:not(:disabled) {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+
+    /* mediaQuery bootstrap*/
+    @media (min-width: 250.98px) {
+        .logo {
+            width: 40%;
+        }
+
+        .form-area {
+            width: 80%;
+        }
+    }
+
+    @media (min-width: 767.98px) {
+        .logo {
+            width: 27%;
+        }
+    }
+
+    @media (min-width: 991.98px) {
+        .logo {
+            width: 20%;
+        }
+    }
+
+    @media (min-width: 1199.98px) {
+        .logo {
+            width: 10%;
+        }
+
+        .form-area {
+            width: 30%;
+        }
+
+        button#retryNatega {
+            width: 10%;
+        }
+    }
+
+    @media (min-width: 1399.98px) {}
 </style>
 
 <body>
@@ -233,13 +288,16 @@
 
         <form class="form-area" id="searchForm">
             <input type="text" placeholder="Enter Seat Number" id="getSeatNo" name="number" class="input-field">
-            <input type="submit" value="search" id="submitButton" class="get-buttons">
+            <input type="submit" value="Get Natega" id="submitButton" class="get-buttons">
             <div class="processing">
                 <div id="loading" class="loader-line spinner-colored"></div>
             </div>
-            <div id="result"> </div>
+            <div id="result"></div>
         </form>
-        <button id="retryNatega" onclick="retryNatega()" class="get-buttons" style="display: none;">نتيجة أخرى</button>
+        <div style="width: 100%; text-align: center;">
+            <button id="retryNatega" onclick="retryNatega()" class="get-buttons" style="display: none;">نتيجة
+                أخرى</button>
+        </div>
     </div>
 
     <script>
@@ -297,7 +355,10 @@
                     error: function (error) {
                         $('#loading').hide(); // Hide the loading spinner
                         console.error('Error:', error);
-                        $('#result').text('An error occurred while processing your request.').show();
+                        $('#getSeatNo').hide();
+                        $('#submitButton').hide();
+                        $('#result').text('استنى شوية لسا مظهرتش أو فيه مشكلة في الموقع بتتحل').show();
+                        $('#retryNatega').show();
                     }
                 });
             });
@@ -306,9 +367,12 @@
 
     <script>
         $(window).on('load', function () {
-            $(".loader").fadeOut(1000);
-            $(".data").fadeIn(1000);
+            setTimeout(function () {
+                $(".loader").fadeOut(1000);
+                $(".data").fadeIn(1000);
+            }, 3000);
         });
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
