@@ -344,7 +344,7 @@
                                     <div class="divTableBody">
                                         <div class="divTableRow">
                                             <div class="divTableCell">${response[0].arabic_name}</div>
-                                            <div id="mark" class="divTableCell">${response[0].total_degree}</div>
+                                            <div id="mark" class="divTableCell">${Number(response[0].total_degree).toFixed(2)}</div>
                                             <div id="percentage" class="divTableCell">${Number((response[0].total_degree / 410) * 100).toFixed(2)} %</div>
                                             <div class="divTableCell">${response[0].student_case_desc}</div>
                                         </div>
